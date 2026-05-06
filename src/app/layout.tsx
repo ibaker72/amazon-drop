@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NJ Drop | Quality Wholesale Products — Paterson, NJ",
+  title: "My Corner Store | Snacks, Drinks, Candy, Vapes & More",
   description:
-    "Shop quality products sourced directly from North Jersey wholesalers. Faster shipping, better prices, local accountability.",
+    "Your corner store, online. Shop snacks, beverages, candy, vapes, and everyday essentials — picked fresh from NJ wholesalers and shipped to your door.",
   openGraph: {
-    title: "NJ Drop",
-    description: "Quality wholesale products from Paterson, NJ",
+    title: "My Corner Store",
+    description:
+      "Snacks, drinks, candy, vapes, and everyday essentials — ordered online and shipped fresh.",
     type: "website",
   },
 };

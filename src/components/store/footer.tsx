@@ -1,4 +1,4 @@
-import { MapPin, Truck, ShieldCheck, Clock } from "lucide-react";
+import { Store, Truck, ShieldCheck, Clock, Zap } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
@@ -11,23 +11,23 @@ export function Footer() {
             {[
               {
                 icon: Truck,
-                title: "Fast 2-Day Shipping",
-                desc: "Local warehouse advantage",
+                title: "Fast Shipping",
+                desc: "Orders processed same day",
               },
               {
-                icon: MapPin,
-                title: "Paterson, NJ",
-                desc: "Locally sourced products",
+                icon: Zap,
+                title: "Fresh Stock",
+                desc: "Picked from NJ wholesalers",
               },
               {
                 icon: ShieldCheck,
-                title: "Quality Inspected",
-                desc: "Every item hand-checked",
+                title: "Hand Inspected",
+                desc: "Every item checked before ship",
               },
               {
                 icon: Clock,
-                title: "Same Day Pickup",
-                desc: "Available in North Jersey",
+                title: "Order by 2pm",
+                desc: "Ships out the same day",
               },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="flex items-start gap-3">
@@ -50,13 +50,14 @@ export function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-3">
               <div className="h-7 w-7 rounded-lg bg-orange-500 flex items-center justify-center">
-                <MapPin className="h-4 w-4 text-white" />
+                <Store className="h-4 w-4 text-white" />
               </div>
-              <span className="font-bold text-white">NJ Drop</span>
+              <span className="font-bold text-white">My Corner Store</span>
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
-              Quality wholesale products sourced directly from North Jersey
-              suppliers. Faster shipping, better prices, local accountability.
+              Your neighborhood store, online. Snacks, drinks, candy, vapes,
+              and everyday essentials picked fresh from NJ wholesalers and
+              shipped straight to you.
             </p>
           </div>
           <div>
@@ -64,18 +65,19 @@ export function Footer() {
               Shop
             </p>
             <ul className="space-y-2 text-sm">
-              {["All Products", "Electronics", "Apparel", "Home & Garden"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      href="/products"
-                      className="hover:text-white transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
+              {[
+                { label: "All Products", href: "/products" },
+                { label: "Snacks & Chips", href: "/products?category=snacks" },
+                { label: "Beverages", href: "/products?category=beverages" },
+                { label: "Candy & Gum", href: "/products?category=candy" },
+                { label: "Vapes & Tobacco", href: "/products?category=vapes" },
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <Link href={href} className="hover:text-white transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
@@ -83,24 +85,19 @@ export function Footer() {
               Info
             </p>
             <ul className="space-y-2 text-sm">
-              {["Shipping Policy", "Returns", "Contact Us", "About"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      href="/"
-                      className="hover:text-white transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
+              {["Shipping Policy", "Returns", "Contact Us", "About"].map((item) => (
+                <li key={item}>
+                  <Link href="/" className="hover:text-white transition-colors">
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs">
-          <p>© {new Date().getFullYear()} NJ Drop. All rights reserved.</p>
-          <p>Proudly serving North Jersey</p>
+          <p>© {new Date().getFullYear()} My Corner Store. All rights reserved.</p>
+          <p>mycornerstore.app</p>
         </div>
       </div>
     </footer>

@@ -9,7 +9,7 @@ import {
   BarChart3,
   Truck,
   ExternalLink,
-  MapPin,
+  Store,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -30,10 +30,10 @@ export function AdminSidebar() {
       <div className="p-6 border-b border-slate-200">
         <div className="flex items-center gap-2">
           <div className="h-8 w-8 rounded-lg bg-orange-500 flex items-center justify-center">
-            <MapPin className="h-4 w-4 text-white" />
+            <Store className="h-4 w-4 text-white" />
           </div>
           <div className="leading-none">
-            <span className="font-bold text-slate-900">NJ Drop</span>
+            <span className="font-bold text-slate-900">My Corner Store</span>
             <span className="block text-[10px] text-slate-400 uppercase tracking-widest">
               Admin
             </span>

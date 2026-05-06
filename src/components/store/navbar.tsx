@@ -2,9 +2,17 @@
 
 import { useCartStore } from "@/store/cart";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, MapPin, Menu, X } from "lucide-react";
+import { ShoppingBag, Store, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+
+const NAV_LINKS = [
+  { href: "/products", label: "Shop All" },
+  { href: "/products?category=snacks", label: "Snacks" },
+  { href: "/products?category=beverages", label: "Beverages" },
+  { href: "/products?category=candy", label: "Candy" },
+  { href: "/products?category=vapes", label: "Vapes" },
+];
 
 export function Navbar() {
   const { totalItems, openCart } = useCartStore();
@@ -16,44 +24,29 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2.5">
             <div className="h-8 w-8 rounded-lg bg-orange-500 flex items-center justify-center">
-              <MapPin className="h-4 w-4 text-white" />
+              <Store className="h-4 w-4 text-white" />
             </div>
             <div className="leading-none">
-              <span className="font-bold text-slate-900 text-base">NJ Drop</span>
+              <span className="font-bold text-slate-900 text-base">My Corner Store</span>
               <span className="block text-[10px] text-slate-400 uppercase tracking-widest">
-                Paterson, NJ
+                mycornerstore.app
               </span>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/products"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              Shop
-            </Link>
-            <Link
-              href="/products?category=electronics"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              Electronics
-            </Link>
-            <Link
-              href="/products?category=apparel"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              Apparel
-            </Link>
-            <Link
-              href="/products?category=home"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              Home
-            </Link>
+          <div className="hidden md:flex items-center gap-7">
+            {NAV_LINKS.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
           </div>
 
           {/* Actions */}
@@ -75,12 +68,9 @@ export function Navbar() {
             <button
               className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
             >
-              {mobileOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -88,19 +78,14 @@ export function Navbar() {
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="md:hidden py-4 border-t border-slate-100 space-y-1">
-            {[
-              { href: "/products", label: "Shop All" },
-              { href: "/products?category=electronics", label: "Electronics" },
-              { href: "/products?category=apparel", label: "Apparel" },
-              { href: "/products?category=home", label: "Home" },
-            ].map((link) => (
+            {NAV_LINKS.map(({ href, label }) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={href}
+                href={href}
                 onClick={() => setMobileOpen(false)}
                 className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100"
               >
-                {link.label}
+                {label}
               </Link>
             ))}
           </div>
